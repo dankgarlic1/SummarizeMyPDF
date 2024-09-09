@@ -23,6 +23,7 @@ const FileUpload = () => {
         file_key,
         file_name,
       });
+      console.log("API response:", response.data);
       return response.data;
     },
   });
