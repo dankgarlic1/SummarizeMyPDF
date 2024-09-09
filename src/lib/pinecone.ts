@@ -61,7 +61,7 @@ async function embedDocument(doc: Document) {
 
     return {
       id: hash,
-      values: embeddings as number[],
+      values: embeddings,
       metadata: {
         text: doc.metadata.text,
         pageNumber: doc.metadata.pageNumber,
