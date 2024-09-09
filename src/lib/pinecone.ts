@@ -33,9 +33,18 @@ export async function loadS3IntoPinecone(fileKey: string) {
   const pages = (await loader.load()) as PDFPage[]; //Method that reads the buffer contents and metadata based on the type of filePathOrBlob, and then calls the parse() method to parse the buffer and return the documents.
 
   //2. Split and segement the pdf
+  const documents = await Promise.all(pages.map(prepareDocument));
+
+  //3. Vectorise and embed individual documents
 
   return pages;
 }
+
+export const truncateStringByBytes = (str: string, bytes: number) => {
+  //since text can get too big in prepareDocument for pinecone to handle, this function came into existence
+  const enc = new TextEncoder();
+  return new TextDecoder("utf-8").decode(enc.encode(str).slice(0, bytes));
+};
 
 async function prepareDocument(page: PDFPage) {
   //we dont want split a pdf into pages and then vectorize them, ineffcient and bad
@@ -49,6 +58,7 @@ async function prepareDocument(page: PDFPage) {
       pageContent,
       metadata: {
         pageNumber: metadata.loc.pageNumber,
+        text: truncateStringByBytes(pageContent, 36000),
       },
     }),
   ]);
