@@ -1,5 +1,6 @@
 import AWS from "aws-sdk";
 import fs from "fs";
+import os from "os";
 export async function downloadFromS3(file_key: string) {
   try {
     AWS.config.update({
@@ -18,7 +19,16 @@ export async function downloadFromS3(file_key: string) {
     };
 
     const obj = await s3.getObject(params).promise();
-    const file_name = `/temp/pdf-${Date.now()}.pdf`;
+    // const file_name = `/tmp/pdf-${Date.now().toString()}.pdf`;
+    // import node:os
+    let file_name;
+    if (os.platform() === "win32") {
+      file_name = `C:\\Users\\${
+        os.userInfo().username
+      }\\AppData\\Local\\Temp\\pdf-${Date.now()}.pdf`;
+    } else {
+      file_name = `/tmp/pdf-${Date.now()}.pdf`;
+    }
     fs.writeFileSync(file_name, obj.Body as Buffer);
     return file_name;
   } catch (error) {
