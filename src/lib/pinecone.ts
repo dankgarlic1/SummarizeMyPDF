@@ -1,7 +1,6 @@
-import { Pinecone } from "@pinecone-database/pinecone";
+import { Pinecone, PineconeRecord } from "@pinecone-database/pinecone";
 import { downloadFromS3 } from "./s3-server";
 import md5 from "md5";
-// import {} from "langchain/document_loaders/fs/pdf";
 import {
   Document,
   RecursiveCharacterTextSplitter,
@@ -9,7 +8,8 @@ import {
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { getEmbeddings } from "./embeddings";
 import { Vector } from "@pinecone-database/pinecone/dist/pinecone-generated-ts-fetch/data";
-import toast from "react-hot-toast";
+import { convertToAscii } from "./utils";
+import { metadata } from "@/app/layout";
 let pinecone: Pinecone | null = null;
 export const getPineconeClient = async () => {
   if (!pinecone) {
@@ -33,6 +33,7 @@ export async function loadS3IntoPinecone(fileKey: string) {
   if (!file_name) {
     throw new Error("Could not download from S3");
   }
+  console.log("loading pdf into memory" + file_name);
   const loader = new PDFLoader(file_name);
   const pages = (await loader.load()) as PDFPage[]; //Method that reads the buffer contents and metadata based on the type of filePathOrBlob, and then calls the parse() method to parse the buffer and return the documents.
 
@@ -46,9 +47,11 @@ export async function loadS3IntoPinecone(fileKey: string) {
   const client = await getPineconeClient();
   const pineconeIndex = client.Index("summarize-my-pdf");
   console.log("Inserting vectors into Pinecone");
-  const namespace = fileKey;
+  const namespace = pineconeIndex.namespace(convertToAscii(fileKey));
+  console.log("inserting vectors into pinecone");
+  await namespace.upsert(vectors);
 
-  return pages;
+  return documents[0];
 }
 
 async function embedDocument(doc: Document) {
@@ -58,13 +61,12 @@ async function embedDocument(doc: Document) {
 
     return {
       id: hash,
-      values: embeddings,
+      values: embeddings as number[],
       metadata: {
-        //these come from prepare text
         text: doc.metadata.text,
         pageNumber: doc.metadata.pageNumber,
       },
-    } as Vector;
+    } as PineconeRecord;
   } catch (error) {
     console.log(`Error embedding document`, error);
     throw error;
@@ -84,7 +86,7 @@ async function prepareDocument(page: PDFPage) {
   pageContent = pageContent.replace(/\n/g, "");
   // split the docs
   const splitter = new RecursiveCharacterTextSplitter();
-  const doc = await splitter.splitDocuments([
+  const docs = await splitter.splitDocuments([
     new Document({
       pageContent,
       metadata: {
@@ -93,5 +95,5 @@ async function prepareDocument(page: PDFPage) {
       },
     }),
   ]);
-  return doc;
+  return docs;
 }
