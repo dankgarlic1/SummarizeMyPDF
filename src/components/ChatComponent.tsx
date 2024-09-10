@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { useChat } from "ai/react";
 import { Button } from "./ui/button";
 import { SendIcon } from "lucide-react";
+import MessageList from "./MessageList";
 
 type Props = {};
 
@@ -16,19 +17,22 @@ const ChatComponent = (props: Props) => {
         <h3 className="text-xl font-bold">Chat</h3>
       </div>
       {/* Message List */}
+      <MessageList messages={messages} />
       <form
         onSubmit={handleSubmit}
         className="sticky  bottom-0 px-2 py-4 inset-x-0 bg-white"
       >
-        <Input
-          value={input}
-          onChange={handleInputChange}
-          placeholder="As any question..."
-          className="w-full"
-        />
-        <Button className="bg-gradient-to-r from-sky-400 to-blue-500 ml-2">
-          <SendIcon className="h-4 w-4" />
-        </Button>
+        <div className="flex">
+          <Input
+            value={input}
+            onChange={handleInputChange}
+            placeholder="As any question..."
+            className="w-full"
+          />
+          <Button className="bg-gradient-to-r from-sky-400 to-blue-500 ml-2">
+            <SendIcon className="h-4 w-4" />
+          </Button>
+        </div>
       </form>
     </div>
   );
