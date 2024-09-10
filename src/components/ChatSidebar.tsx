@@ -26,7 +26,8 @@ const ChatSidebar = ({ chats, chatId }: Props) => {
             {/* cn is from shadcn */}
             <div
               className={cn("rounded-lg p-3 text-slate-300 flex items-center", {
-                "bg-blue-600 text-white ": chat.id === chatId,
+                "bg-gradient-to-r from-sky-400 to-blue-500 text-white ":
+                  chat.id === chatId,
                 "hover:text-white": chat.id !== chatId,
               })}
             >
