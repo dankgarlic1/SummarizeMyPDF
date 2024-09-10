@@ -11,6 +11,7 @@
     "db:studio": "npx drizzle-kit studio"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.58",
     "@clerk/nextjs": "^5.4.1",
     "@langchain/community": "^0.2.32",
     "@pinecone-database/doc-splitter": "^0.0.1",
