@@ -17,30 +17,29 @@ const ChatPage = async ({ params: { chatId } }: Props) => {
   if (!userId) {
     return redirect("/sign-in");
   }
-  const _chats = await db.select().from(chats).where(eq(chats.userId, userId)); //list of all chats
+  const _chats = await db.select().from(chats).where(eq(chats.userId, userId)); // list of all chats
   if (!_chats) {
     return redirect("/");
   }
   if (!_chats.find((chat) => chat.id === parseInt(chatId))) {
     return redirect("/");
   }
+
   return (
-    <div className="flex max-h-screen overflow-scroll">
-      <div className="flex overflow-scroll max-h-screen w-full">
-        {/* Chat Sidebar */}
-        <div className="flex-[1] max-w-xs ">
-          <ChatSidebar />
-        </div>
-        {/* PDF Viewer */}
-        <div className="flex-[5] max-h-screen p-4 overflow-scroll">
-          hhhhhhpjo
-          {/* <PDFViewer/> */}
-        </div>
-        {/* Chat Component */}
-        <div className="flex-[3] border-l-4 border-l-slate-200">
-          jsjsjsjsj
-          {/* <ChatComponent/> */}
-        </div>
+    <div className="flex h-screen overflow-hidden">
+      {/* Chat Sidebar */}
+      <div className="flex-[2] max-w-xs h-full overflow-y-auto">
+        <ChatSidebar chatId={parseInt(chatId)} chats={_chats} />
+      </div>
+      {/* PDF Viewer */}
+      <div className="flex-[5] h-full p-4 overflow-y-auto">
+        hhhhhhpjo
+        {/* <PDFViewer /> */}
+      </div>
+      {/* Chat Component */}
+      <div className="flex-[3] h-full border-l-4 border-l-slate-200 overflow-y-auto">
+        jsjsjsjsj
+        {/* <ChatComponent /> */}
       </div>
     </div>
   );
