@@ -1,15 +1,13 @@
-import { useRouter } from "next/router";
+import React from "react";
 
-const ChatPage = () => {
-  const router = useRouter();
-  const { chatId } = router.query; // Access the query parameter
+type Props = {
+  params: {
+    chatId: string;
+  };
+};
 
-  // Optional: Add a console log to see the chatId
-  console.log("Chat ID:", chatId);
-
-  if (!chatId) return <div>Loading...</div>;
-
-  return <div>Chat ID: {chatId}</div>;
+const ChatPage = ({ params: { chatId } }: Props) => {
+  return <div>{chatId}</div>;
 };
 
 export default ChatPage;
