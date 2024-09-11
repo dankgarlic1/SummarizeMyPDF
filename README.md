@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📄 **Summarize My PDF** 🤖
 
-## Getting Started
+Welcome to **Summarize My PDF AI**! This project allows users to upload a PDF, splits the document into multiple embeddings, stores them in Pinecone DB, and uses those embeddings in a chatbot to provide accurate and contextual answers, with chats stored in PostgreSQL.
 
-First, run the development server:
+### 🎯 **Features**
+
+- 📂 **Drag-and-Drop PDF Upload**
+- 🧠 **PDF Content Summarization**
+- 🌐 **Pinecone DB for Embeddings**
+- 💬 **AI Chatbot with Contextual Understanding**
+- 🗃️ **Chat History Stored in PostgreSQL**
+- ☁️ **AWS S3 for File Storage**
+
+---
+
+### 🚀 **Getting Started**
+
+Follow the steps below to get the project up and running on your local machine.
+
+#### 1. **Clone the Repository**
+
+```bash
+git clone https://github.com/dankgarlic1/SummarizeMyPDF.git
+cd summarize-my-pdf-ai
+```
+
+#### 2. **Install Dependencies**
+
+Make sure you have Node.js installed, then install the project dependencies:
+
+```bash
+npm install
+```
+
+#### 3. **Set Up Environment Variables**
+
+Create a `.env` file in the root directory and add the necessary environment variables. **Do not share your API keys publicly!** Make sure your `.env` file contains something like this:
+
+```bash
+# Clerk API Keys
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your_clerk_publishable_key>
+CLERK_SECRET_KEY=<your_clerk_secret_key>
+
+# Database
+DATABASE_URL=<your_database_url>
+
+# AWS S3
+NEXT_PUBLIC_S3_ACCESS_KEY_ID=<your_s3_access_key>
+NEXT_PUBLIC_S3_SECRET_ACCESS_KEY=<your_s3_secret_access_key>
+NEXT_PUBLIC_S3_BUCKET_NAME=<your_s3_bucket_name>
+
+# Pinecone DB
+PINECONE_API_KEY=<your_pinecone_api_key>
+
+# OpenAI
+OPENAI_API_KEY=<your_openai_api_key>
+```
+
+#### 4. **Run the Development Server**
+
+Start the development server with:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your app will be running at [http://localhost:3000](http://localhost:3000) 🚀.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🛠️ **Technologies Used**
 
-## Learn More
+- **Next.js** - Server-side rendering and static site generation 🌐
+- **PostgreSQL** - Robust database for storing chat history 🗄️
+- **Pinecone** - Vector database for efficient embeddings 📊
+- **OpenAI** - AI models for summarization and contextual chat 🤖
+- **AWS S3** - File storage for uploaded PDFs ☁️
+- **React Dropzone** - Smooth drag-and-drop PDF upload 📂
+- **Drizzle ORM** - Simple, yet powerful ORM for database operations 🛠️
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔥 **Running Database Migrations**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To push database changes to PostgreSQL, run:
 
-## Deploy on Vercel
+```bash
+npm run db:push
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To access the database studio:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run db:studio
+```
+
+---
+
+### 🎨 **Styling**
+
+TailwindCSS is used for quick and scalable UI development. All components are highly customizable via props.
+
+---
+
+### 🧑‍💻 **Local Development Tips**
+
+- For managing API keys securely, always use environment variables.
+- Use **react-hot-toast** for displaying notifications and loading states.
+- For custom embeddings and PDF content processing, **@pinecone-database/doc-splitter** handles PDF chunking efficiently.
+
+---
+
+Feel free to explore the project, and enjoy using **Summarize My PDF AI**! ✨
