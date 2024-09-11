@@ -1,5 +1,11 @@
 # 📄 **Summarize My PDF** 🤖
 
+_(Currently Under Construction — So Close Yet So Far!)_ 🚧
+
+_This project is like your favorite dish in the oven – it smells great, but you can’t eat it just yet! 🍕 While it’s still baking, feel free to peek behind the scenes._ 😎
+
+---
+
 Welcome to **Summarize My PDF AI**! This project allows users to upload a PDF, splits the document into multiple embeddings, stores them in Pinecone DB, and uses those embeddings in a chatbot to provide accurate and contextual answers, with chats stored in PostgreSQL.
 
 ### 🎯 **Features**
@@ -110,4 +116,6 @@ TailwindCSS is used for quick and scalable UI development. All components are hi
 
 ---
 
-Feel free to explore the project, and enjoy using **Summarize My PDF AI**! ✨
+Feel free to explore the project, but don’t get too attached to it just yet – it’s almost there! 🚀
+
+---
