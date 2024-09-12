@@ -1,22 +1,35 @@
 "use client";
-import React from "react";
+import React, { memo } from "react";
 import { Input } from "./ui/input";
 import { useChat } from "ai/react";
 import { Button } from "./ui/button";
-import { SendIcon } from "lucide-react";
+import { Loader2, SendIcon } from "lucide-react";
 import MessageList from "./MessageList";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 type Props = { chatId: number };
 
-const ChatComponent = ({ chatId }: Props) => {
+const ChatComponent = memo(({ chatId }: Props) => {
   // console.log("Chat ID in ChatComponent:", chatId);
+  const { data, isLoading } = useQuery({
+    queryKey: ["chat", chatId],
+    queryFn: async () => {
+      const response = await axios.post("/api/get-messages", { chatId });
+      return response.data;
+    },
+    staleTime: 300000, // 5 minutes of cache life
+    // cacheTime: 900000,  // 15 minutes to persist the cache
 
+    refetchOnWindowFocus: false, // Disable refetching when the window is focused
+  });
   const { input, handleInputChange, handleSubmit, messages } = useChat({
     api: "/api/chat",
 
     body: {
       chatId,
     },
+    initialMessages: data || [],
   });
   React.useEffect(() => {
     const messageContainer = document.getElementById("message-container");
@@ -38,10 +51,17 @@ const ChatComponent = ({ chatId }: Props) => {
         <h3 className="text-xl font-bold">Chat</h3>
       </div>
       {/* Message List */}
-      <MessageList messages={messages} />
+
+      {isLoading ? (
+        <div className="flex justify-center items-center h-full">
+          <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
+        </div>
+      ) : (
+        <MessageList messages={messages} />
+      )}
       <form
         onSubmit={handleSubmit}
-        className="sticky  bottom-0 px-2 py-4 inset-x-0 bg-white"
+        className="sticky  bottom-0 px-2 py-4 inset-x-0 bg-white mt-2"
       >
         <div className="flex">
           <Input
@@ -57,6 +77,6 @@ const ChatComponent = ({ chatId }: Props) => {
       </form>
     </div>
   );
-};
+});
 
 export default ChatComponent;
