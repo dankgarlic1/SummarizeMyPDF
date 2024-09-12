@@ -56,6 +56,24 @@ export async function POST(req: Request) {
         prompt,
         ...messages.filter((message: Message) => message.role === "user"),
       ],
+      async onFinish({ text, toolCalls, toolResults, usage, finishReason }) {
+        try {
+          // Save user message into the database
+          await db.insert(_messages).values({
+            chatId,
+            content: lastMessage.content,
+            role: "user",
+          });
+          // Save AI response into the database
+          await db.insert(_messages).values({
+            chatId,
+            content: text,
+            role: "system",
+          });
+        } catch (error) {
+          console.error("Error saving chat:", error);
+        }
+      },
 
       // messages,
     });
