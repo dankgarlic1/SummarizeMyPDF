@@ -37,7 +37,7 @@ export async function getContext(query: string, fileKey: string) {
     pageNumber: number;
   };
 
-  let docs = qualifyingDocs.map((match) => (match.metadata as Metadata).text);
+  const docs = qualifyingDocs.map((match) => (match.metadata as Metadata).text);
   // console.log(`docs ${docs}`);
 
   return docs.join("\n").substring(0, 3000); //so that we dont send all the data to openai because toen limit might exceed

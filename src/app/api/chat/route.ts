@@ -56,7 +56,7 @@ export async function POST(req: Request) {
         prompt,
         ...messages.filter((message: Message) => message.role === "user"),
       ],
-      async onFinish({ text, toolCalls, toolResults, usage, finishReason }) {
+      async onFinish({ text }) {
         try {
           // Save user message into the database
           await db.insert(_messages).values({

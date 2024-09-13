@@ -35,6 +35,7 @@ const FileUpload = () => {
         // Use stored count and date
         setUploadCount(parseInt(storedCount as string, 10) || 0);
         setLastUploadDate(lastDate);
+        console.log(lastUploadDate);
       }
     } else {
       // Initialize for the first time

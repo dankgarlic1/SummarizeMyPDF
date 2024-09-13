@@ -1,5 +1,4 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { publicEncrypt } from "crypto";
 
 const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)", "/"]);
 

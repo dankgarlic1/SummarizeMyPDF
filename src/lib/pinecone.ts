@@ -7,9 +7,7 @@ import {
 } from "@pinecone-database/doc-splitter";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { getEmbeddings } from "./embeddings";
-import { Vector } from "@pinecone-database/pinecone/dist/pinecone-generated-ts-fetch/data";
 import { convertToAscii } from "./utils";
-import { metadata } from "@/app/layout";
 let pinecone: Pinecone | null = null;
 export const getPineconeClient = async () => {
   if (!pinecone) {
