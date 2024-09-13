@@ -1,8 +1,14 @@
-Here’s the updated README with the requested changes:
-
+---
+# 📄 **Summarize My PDF** 🤖
 ---
 
-# 📄 **Summarize My PDF** 🤖
+## 🎥 **Video Preview**
+
+![alt text](image.png)
+
+![Video Overview](https://drive.google.com/file/d/1ov3namORvpsoEraPvM3G052zya859Haw/view?usp=sharing)
+
+---
 
 _(Currently Under Construction — So Close Yet So Far!)_ 🚧
 
@@ -128,6 +134,8 @@ In the `FileUpload` component, I hardcoded my email (`raizadaharshit2004@gmail.c
 
 ```jsx
 const isSpecialUser = userEmail === "raizadaharshit2004@gmail.com";
+```
 
+Feel free to explore the project, but don’t get too attached to it just yet – it’s almost there! 🚀
 
 ---
