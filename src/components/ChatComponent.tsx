@@ -78,6 +78,6 @@ const ChatComponent = memo(({ chatId }: Props) => {
     </div>
   );
 });
-ChatComponent.displayName = "ChatComponent";
+// ChatComponent.displayName = "ChatComponent";
 
 export default ChatComponent;

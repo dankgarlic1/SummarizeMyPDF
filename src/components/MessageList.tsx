@@ -74,5 +74,5 @@ const MessageList = memo(({ messages }: Props) => {
   );
 });
 
-MessageList.displayName = "MessageList";
+// MessageList.displayName = "MessageList";
 export default MessageList;
