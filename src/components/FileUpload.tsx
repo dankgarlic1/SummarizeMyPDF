@@ -35,7 +35,6 @@ const FileUpload = () => {
         // Use stored count and date
         setUploadCount(parseInt(storedCount as string, 10) || 0);
         setLastUploadDate(lastDate);
-        console.log(lastUploadDate);
       }
     } else {
       // Initialize for the first time
@@ -85,7 +84,7 @@ const FileUpload = () => {
           return;
         }
         const userEmail = user?.primaryEmailAddress?.emailAddress;
-        console.log(`user email: ${userEmail}`);
+        // console.log(`user email: ${userEmail}`);
 
         const isSpecialUser = userEmail === "raizadaharshit2004@gmail.com";
         if (!isSpecialUser && uploadCount >= 2) {
@@ -111,7 +110,7 @@ const FileUpload = () => {
             console.log(err);
           },
         });
-        console.log("data: ", data);
+        // console.log("data: ", data);
       } catch (error) {
         console.log(error);
       } finally {
