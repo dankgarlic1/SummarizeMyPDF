@@ -19,6 +19,7 @@ export default async function Home() {
       firstChat = firstChat[0];
     }
   }
+
   return (
     <div className="w-screen min-h-screen bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -43,18 +44,22 @@ export default async function Home() {
             )}
           </div>
           <p className="max-w-xl mt-1 text-lg text-slate-600">
-            Join millions of students, researchers, and professionals to
-            instantly answer questions and understand research with AI
+            Ready to flirt with PDFs? Join millions of students, researchers,
+            and professionals who are using AI to unlock answers, dive deep into
+            research, and turn those boring documents into charming
+            conversations. 💌📚 Get ready to make your PDFs blush!
+          </p>
+          <p className="max-w-xl mt-2 text-sm text-slate-500">
+            *Disclaimer: Due to our limited resources, you can only charm up to
+            2 PDFs per day😉
           </p>
           <div className="w-full mt-4">
             {isAuth ? (
-              // <h1>Drag pdf</h1>
               <FileUpload />
             ) : (
               <Link href={"/sign-in"}>
                 <Button>
-                  Login to get Started!
-                  <LogIn className="w-4 h-4 ml-2" />
+                  Login to get Started! <LogIn className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             )}
