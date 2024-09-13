@@ -1,12 +1,12 @@
----
+
 # 📄 **Summarize My PDF** 🤖
----
+
 
 ## 🎥 **Video Preview**
 
 ![alt text](image.png)
 
-![Video Overview](https://drive.google.com/file/d/1ov3namORvpsoEraPvM3G052zya859Haw/view?usp=sharing)
+![Video Overview](https://drive.google.com/file/d/1ov3namORvpsoEraPvM3G052zya859Haw/view?usp=drive_link)
 
 ---
 
