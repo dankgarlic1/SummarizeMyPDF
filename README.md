@@ -1,8 +1,14 @@
+Here’s the updated README with the requested changes:
+
+---
+
 # 📄 **Summarize My PDF** 🤖
 
 _(Currently Under Construction — So Close Yet So Far!)_ 🚧
 
 _This project is like your favorite dish in the oven – it smells great, but you can’t eat it just yet! 🍕 While it’s still baking, feel free to peek behind the scenes._ 😎
+
+**Update:** This is the hardest project I have built up until now. Unfortunately, Stripe has now switched their policy, and I can't create an account unless I get an invite. Therefore, I won’t be deploying this SaaS. However, you can still tinker with it in local development. Please make sure to leave a star if you like it! ⭐
 
 ---
 
@@ -116,6 +122,12 @@ TailwindCSS is used for quick and scalable UI development. All components are hi
 
 ---
 
-Feel free to explore the project, but don’t get too attached to it just yet – it’s almost there! 🚀
+### ⚠️ **Important Note**
+
+In the `FileUpload` component, I hardcoded my email (`raizadaharshit2004@gmail.com`) to allow unlimited PDF sessions while other users have a limit of two. To ensure fair use and limit resources, please comment out or remove the part of the code where my email is hardcoded:
+
+```jsx
+const isSpecialUser = userEmail === "raizadaharshit2004@gmail.com";
+
 
 ---
