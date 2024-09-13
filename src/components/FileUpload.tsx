@@ -44,7 +44,7 @@ const FileUpload = () => {
       setUploadCount(0);
       setLastUploadDate(now);
     }
-  }, []);
+  }, [lastUploadDate]);
   const { mutate, isPending } = useMutation({
     mutationFn: async ({
       file_key,

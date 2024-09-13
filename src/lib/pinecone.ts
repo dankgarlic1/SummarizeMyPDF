@@ -80,16 +80,16 @@ export const truncateStringByBytes = (str: string, bytes: number) => {
 async function prepareDocument(page: PDFPage) {
   //we dont want split a pdf into pages and then vectorize them, ineffcient and bad
   //we need to split the pdf in even smaller units so each and every page will be split
-  let { metadata, pageContent } = page;
-  pageContent = pageContent.replace(/\n/g, "");
+  const { metadata, pageContent } = page;
+  const cleanedPageContent = pageContent.replace(/\n/g, "");
   // split the docs
   const splitter = new RecursiveCharacterTextSplitter();
   const docs = await splitter.splitDocuments([
     new Document({
-      pageContent,
+      pageContent: cleanedPageContent,
       metadata: {
         pageNumber: metadata.loc.pageNumber,
-        text: truncateStringByBytes(pageContent, 36000),
+        text: truncateStringByBytes(cleanedPageContent, 36000),
       },
     }),
   ]);

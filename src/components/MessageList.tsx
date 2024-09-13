@@ -73,4 +73,6 @@ const MessageList = memo(({ messages }: Props) => {
     </div>
   );
 });
+
+MessageList.displayName = "MessageList";
 export default MessageList;
