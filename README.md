@@ -1,6 +1,4 @@
-
 # 📄 **Summarize My PDF** 🤖
-
 
 ## 🎥 **Video Preview**
 
@@ -86,6 +84,38 @@ Your app will be running at [http://localhost:3000](http://localhost:3000) 🚀.
 
 ---
 
+### 🐳 **Docker Setup**
+
+To run this project using Docker, follow these steps:
+
+1. **Create an Empty Project Directory**
+
+   Create a directory for your project and navigate into it.
+
+2. **Create a `.env` File**
+
+   Inside the directory, create a `.env` file and use the sample provided above to add your environment variables.
+
+3. **Pull the Docker Image**
+
+   ```bash
+   docker pull harshitraizada63/summarize-my-pdf
+   ```
+
+4. **Run the Docker Container**
+
+   Run the container using the following command:
+
+   ```bash
+   docker run -p 3000:3000 --env-file .env harshitraizada63/summarize-my-pdf
+   ```
+
+5. **Access the App**
+
+   Your app will be available at [http://localhost:3000](http://localhost:3000).
+
+---
+
 ### 🛠️ **Technologies Used**
 
 - **Next.js** - Server-side rendering and static site generation 🌐
@@ -136,6 +166,4 @@ In the `FileUpload` component, I hardcoded my email (`raizadaharshit2004@gmail.c
 const isSpecialUser = userEmail === "raizadaharshit2004@gmail.com";
 ```
 
-Feel free to explore the project, but don’t get too attached to it just yet – it’s almost there! 🚀
-
----
+Feel free to explore the project 🚀
